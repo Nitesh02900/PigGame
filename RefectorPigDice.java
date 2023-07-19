@@ -14,7 +14,7 @@ public class RefectorPigDice {
     private final Scanner scanner;
 
     public RefectorPigDice() {
-        turn = 0;
+        turn = 1;
         score = 0;
         scanner = new Scanner(System.in);
     }
@@ -28,8 +28,9 @@ public class RefectorPigDice {
 
             if (decision == 'h') {
                 hold();
-            } else {
+            } else if(decision=='r'){
                 int die = rollDie();
+                System.out.println("Die:"+die);
                 if (die == 1) {
                     endTurnWithNoScore();
                 } else {
@@ -39,13 +40,16 @@ public class RefectorPigDice {
                     }
                 }
             }
+            else {
+            	System.out.println("You have entered wrong choice:please enter valid charecter:");
+            }
         }
     }
 
     private void hold() {
-        turn++;
-        System.out.println("Score for turn: " + turn);
-        System.out.println("Total score: " + score);
+    	 System.out.println("Score for turn: " + turn); // Moved this line here from end of the hold() method.
+    	    turn++; // Increment the turn only when the player decides to hold.
+    	    System.out.println("Total score: " + score);
     }
 
     private int rollDie() {
